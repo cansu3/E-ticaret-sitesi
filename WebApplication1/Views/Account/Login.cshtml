@@ -1,0 +1,76 @@
+﻿@model WebApplication1.Models.Account.LoginModels
+@{
+    ViewBag.Title = "Login";
+}
+
+<div class="class">
+
+    <div class="row my-4"></div>
+
+
+    <div>
+        @using (Html.BeginForm())
+        {
+            <div class="col-md-4 offset-md-4 my-2 ">
+                <div class="card " style="background-color :rgba(1, 255, 14, 0.25);">
+                    <div class="card-header">
+
+                        <div class="row">
+                            <div class="col-md-3 ">
+                                <h2>
+                                    <i class="fas fa-sign-in-alt fa-stack-2x "></i>
+                                </h2>
+                            </div>
+                            <div class="col-md-9 text-right">
+
+                                <h2>Giriş</h2>
+                                @if (ViewBag.ReError != null && string.IsNullOrEmpty((string)ViewBag.ReError) == false)
+                                {
+                                    <small style="color:red;">@ViewBag.ReError</small>
+                                }
+                                else
+                                {
+                                    <small>Lütfen e-mail ve şifrenizi giriniz.</small>
+                                }
+                            </div>
+                        </div>
+                        <div>
+
+
+
+                            <div class="card-body">
+
+                                <div class="form-group">
+
+                                    @Html.TextBoxFor(model => model.Member.email, new { @class = "form-control", placeholder = "e-mail address", type = "email" })
+                                </div>
+                                <div class="form-group">
+
+                                    @Html.TextBoxFor(model => model.Member.şifre, new { @class = "form-control", placeholder = "password", type = "password" })
+                                </div>
+
+                            </div>
+                            <div class="card-footer text-muted">
+                                <button type="submit" class="btn btn-success mr-2">Giriş Yap</button>
+                                <a class="btn btn-warning mr-2" href="#" role="button">Şifremi Unuttum</a>
+
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
+    </div>
+
+
+
+
+
+
+            </div>
+

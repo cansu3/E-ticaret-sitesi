@@ -1,0 +1,287 @@
+﻿@model WebApplication1.Models.i.IndexModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container-fluid">
+
+
+    <div class="row">
+        <div class="col-md-10 offset-md-1 p-4 ">
+            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselId" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselId" data-slide-to="1"></li>
+                    <li data-target="#carouselId" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img class="d-block w-100 img-fluid weight-100 height-50" src="https://i.hizliresim.com/DtpSsj.jpg" alt="First slide">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Hoşgeldiniz</h5>
+
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100 img-fluid" src="https://i.hizliresim.com/p3yCdd.jpg" alt="Second slide">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Hoşgeldiniz</h5>
+
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100 img-fluid" src="https://i.hizliresim.com/zfwbu3.jpg" alt="Third slide">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Hoşgeldiniz</h5>
+
+                        </div>
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <div class="row">
+                <div class="col-md-3 my-2">
+                    <div class="card">
+                        <img class="card-img-top img-fluid" src="https://i.hizliresim.com/pLP823.jpg">
+                        <div class="card-body">
+                            <h4 class="card-title text-center">
+                                <a href="Product.html" target="blank">2L Sızma Zeytinyağı</a>
+                            </h4>
+                            <p class="card-text text-justify">
+                                Fiyat: 60 tl
+                            </p>
+                            <a href="Cart.html" class="btn btn-success btn-sm">
+                                <span class="fa fa-shopping-cart mr-2"></span>Sepete Ekle
+                            </a>
+                            <a href="#" class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#productInfoModal">
+                                <span class="fa fa-info-circle mr-2"></span>Bilgi
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 my-2">
+                    <div class="card">
+                        <img class="card-img-top img-fluid" src="https://i.hizliresim.com/pLP823.jpg">
+                        <div class="card-body">
+                            <h4 class="card-title text-center">
+                                <a href="Product.html" target="blank">5L Sızma Zeytinyağı</a>
+                            </h4>
+                            <p class="card-text text-justify">
+                                Fiyat: 140 tl
+                            </p>
+                            <a href="Cart.html" class="btn btn-success btn-sm">
+                                <span class="fa fa-shopping-cart mr-2"></span>Sepete Ekle
+                            </a>
+                            <a href="#" class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#productInfoModal">
+                                <span class="fa fa-info-circle mr-2"></span>Bilgi
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 my-2">
+                    <div class="card">
+                        <img class="card-img-top img-fluid" src="https://i.hizliresim.com/i2wxiw.jpg">
+                        <div class="card-body">
+                            <h4 class="card-title text-center">
+                                <a href="Product.html" target="blank">2 kg Organik Çam Balı</a>
+                            </h4>
+                            <p class="card-text text-justify">
+                                Fiyat: 80 tl
+                            </p>
+                            <a href="Cart.html" class="btn btn-success btn-sm">
+                                <span class="fa fa-shopping-cart mr-2"></span>Sepete Ekle
+                            </a>
+                            <a href="#" class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#productInfoModal">
+                                <span class="fa fa-info-circle mr-2"></span>Bilgi
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 my-2">
+                    <div class="card">
+                        <img class="card-img-top img-fluid" src="https://i.hizliresim.com/i2wxiw.jpg">
+                        <div class="card-body">
+                            <h4 class="card-title text-center">
+                                <a href="Product.html" target="blank">5 kg Organik Çam Balı</a>
+                            </h4>
+                            <p class="card-text text-justify">
+                                Fiyat: 150 tl
+                            </p>
+                            <a href="Cart.html" class="btn btn-success btn-sm">
+                                <span class="fa fa-shopping-cart mr-2"></span>Sepete Ekle
+                            </a>
+                            <a href="#" class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#productInfoModal">
+                                <span class="fa fa-info-circle mr-2"></span>Bilgi
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 my-2">
+                    <div class="card">
+                        <img class="card-img-top img-fluid" src="https://i.hizliresim.com/DC3iPW.jpg">
+                        <div class="card-body">
+                            <h4 class="card-title text-center">
+                                <a href="Product.html" target="blank">2 kg Yeşil Zeytin</a>
+                            </h4>
+                            <p class="card-text text-justify">
+                                Fiyat: 60 tl
+                            </p>
+                            <a href="Cart.html" class="btn btn-success btn-sm">
+                                <span class="fa fa-shopping-cart mr-2"></span>Sepete Ekle
+                            </a>
+                            <a href="#" class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#productInfoModal">
+                                <span class="fa fa-info-circle mr-2"></span>Bilgi
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 my-2">
+                    <div class="card">
+                        <img class="card-img-top img-fluid" src="https://i.hizliresim.com/DC3iPW.jpg">
+                        <div class="card-body">
+                            <h4 class="card-title text-center">
+                                <a href="Product.html" target="blank">5 kg Yeşil Zeytin</a>
+                            </h4>
+                            <p class="card-text text-justify">
+                                Fiyat: 140 tl
+                            </p>
+                            <a href="Cart.html" class="btn btn-success btn-sm">
+                                <span class="fa fa-shopping-cart mr-2"></span>Sepete Ekle
+                            </a>
+                            <a href="#" class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#productInfoModal">
+                                <span class="fa fa-info-circle mr-2"></span>Bilgi
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 my-2">
+                    <div class="card">
+                        <img class="card-img-top img-fluid" src="https://i.hizliresim.com/CowI3l.jpg">
+                        <div class="card-body">
+                            <h4 class="card-title text-center">
+                                <a href="Product.html" target="blank">2 kg Siyah Zeytin</a>
+                            </h4>
+                            <p class="card-text text-justify">
+                                Fiyat: 60 tl
+                            </p>
+                            <a href="Cart.html" class="btn btn-success btn-sm">
+                                <span class="fa fa-shopping-cart mr-2"></span>Sepete Ekle
+                            </a>
+                            <a href="#" class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#productInfoModal">
+                                <span class="fa fa-info-circle mr-2"></span>Bilgi
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 my-2">
+                    <div class="card">
+                        <img class="card-img-top img-fluid" src="https://i.hizliresim.com/CowI3l.jpg">
+                        <div class="card-body">
+                            <h4 class="card-title text-center">
+                                <a href="Product.html" target="blank">5 kg Siyah Zeytin</a>
+                            </h4>
+                            <p class="card-text text-justify">
+                                Fiyat: 140 tl
+                            </p>
+                            <a href="Cart.html" class="btn btn-success btn-sm">
+                                <span class="fa fa-shopping-cart mr-2"></span>Sepete Ekle
+                            </a>
+                            <a href="#" class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#productInfoModal">
+                                <span class="fa fa-info-circle mr-2"></span>Bilgi
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+
+<div class="modal fade" id="productInfoModal" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="editModalTitle"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="editModalTitle">Ürün Bilgisi</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="row my-2">
+                    <div class="col-md-6 offset-md-3">
+                        <div id="productCarousel" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#carouselId" data-slide-to="0" class="active"></li>
+                                <li data-target="#carouselId" data-slide-to="1"></li>
+                                <li data-target="#carouselId" data-slide-to="2"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img class="d-block w-100" src="http://placehold.it/300x300" alt="First slide">
+                                </div>
+                                <div class="carousel-item">
+                                    <img class="d-block w-100" src="http://placehold.it/300x300" alt="Second slide">
+                                </div>
+                                <div class="carousel-item">
+                                    <img class="d-block w-100" src="http://placehold.it/300x300" alt="Third slide">
+                                </div>
+                            </div>
+                            <a class="carousel-control-prev" href="#productCarousel" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#productCarousel" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row my-2">
+                    <div class="col-md-12">
+                        <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, voluptatum hic placeat reiciendis distinctio molestiae recusandae excepturi ab delectus nihil at, harum, quos quasi numquam adipisci dolores a necessitatibus. Voluptatem.</p>
+                        <p class="text-justify">Dolores eum voluptas totam optio excepturi ipsum labore deleniti laudantium magnam quas, perferendis cumque sequi. Expedita id error eos corporis dolorum, consectetur hic eum obcaecati maxime mollitia magnam ipsum veniam.</p>
+                        <p class="text-justify">Laborum esse minus sit itaque modi vero quisquam assumenda voluptate, veniam, quaerat, labore accusamus! Quidem harum ab vitae, tenetur facere, consequatur amet, eveniet numquam in cupiditate maiores vel architecto officia.</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        <b>Fiyatı : 20.00 ₺</b>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                    <span class="fa fa-close mr-2"></span>Kapat
+                </button>
+                <button type="button" class="btn btn-success">
+                    <span class="fa fa-shopping-cart mr-2"></span>Sepete At
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

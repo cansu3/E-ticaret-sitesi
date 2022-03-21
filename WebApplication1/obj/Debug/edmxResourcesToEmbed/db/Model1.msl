@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="eticaretModelStoreContainer" CdmEntityContainer="eticaretEntities1">
+    <EntitySetMapping Name="Adres">
+      <EntityTypeMapping TypeName="eticaretModel.Adres">
+        <MappingFragment StoreEntitySet="Adres">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="başlık" ColumnName="başlık" />
+          <ScalarProperty Name="açıklama" ColumnName="açıklama" />
+          <ScalarProperty Name="ekleme_tarihi" ColumnName="ekleme_tarihi" />
+          <ScalarProperty Name="güncelleme_tarihi" ColumnName="güncelleme_tarihi" />
+          <ScalarProperty Name="üye_id" ColumnName="üye_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="kullanıcı">
+      <EntityTypeMapping TypeName="eticaretModel.kullanıcı">
+        <MappingFragment StoreEntitySet="kullanıcı">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="ad" ColumnName="ad" />
+          <ScalarProperty Name="soyad" ColumnName="soyad" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="şifre" ColumnName="şifre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Mesaj">
+      <EntityTypeMapping TypeName="eticaretModel.Mesaj">
+        <MappingFragment StoreEntitySet="Mesaj">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="konu" ColumnName="konu" />
+          <ScalarProperty Name="metin" ColumnName="metin" />
+          <ScalarProperty Name="okundu" ColumnName="okundu" />
+          <ScalarProperty Name="gönderme_tarihi" ColumnName="gönderme_tarihi" />
+          <ScalarProperty Name="gönderen_id" ColumnName="gönderen_id" />
+          <ScalarProperty Name="alıcı_id" ColumnName="alıcı_id" />
+          <ScalarProperty Name="parent_mesaj_id" ColumnName="parent_mesaj_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sipariş">
+      <EntityTypeMapping TypeName="eticaretModel.Sipariş">
+        <MappingFragment StoreEntitySet="Sipariş">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="no" ColumnName="no" />
+          <ScalarProperty Name="tarih" ColumnName="tarih" />
+          <ScalarProperty Name="durum" ColumnName="durum" />
+          <ScalarProperty Name="üye_id" ColumnName="üye_id" />
+          <ScalarProperty Name="adres_id" ColumnName="adres_id" />
+          <ScalarProperty Name="alma_tarihi" ColumnName="alma_tarihi" />
+          <ScalarProperty Name="güncelleme_tarihi" ColumnName="güncelleme_tarihi" />
+          <ScalarProperty Name="açıklama" ColumnName="açıklama" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sipariş_Detay">
+      <EntityTypeMapping TypeName="eticaretModel.Sipariş_Detay">
+        <MappingFragment StoreEntitySet="Sipariş_Detay">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="ürün_id" ColumnName="ürün_id" />
+          <ScalarProperty Name="adet" ColumnName="adet" />
+          <ScalarProperty Name="fiyat" ColumnName="fiyat" />
+          <ScalarProperty Name="sipariş_id" ColumnName="sipariş_id" />
+          <ScalarProperty Name="alma_tarihi" ColumnName="alma_tarihi" />
+          <ScalarProperty Name="güncelleme_tarihi" ColumnName="güncelleme_tarihi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ürün">
+      <EntityTypeMapping TypeName="eticaretModel.Ürün">
+        <MappingFragment StoreEntitySet="Ürün">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="ad" ColumnName="ad" />
+          <ScalarProperty Name="açıklama" ColumnName="açıklama" />
+          <ScalarProperty Name="fiyat" ColumnName="fiyat" />
+          <ScalarProperty Name="resim" ColumnName="resim" />
+          <ScalarProperty Name="puanlayan_üye_sayısı" ColumnName="puanlayan_üye_sayısı" />
+          <ScalarProperty Name="stokta_var" ColumnName="stokta_var" />
+          <ScalarProperty Name="stok_sayısı" ColumnName="stok_sayısı" />
+          <ScalarProperty Name="ekleme_tarihi" ColumnName="ekleme_tarihi" />
+          <ScalarProperty Name="güncelleme_tarihi" ColumnName="güncelleme_tarihi" />
+          <ScalarProperty Name="puan" ColumnName="puan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Üye">
+      <EntityTypeMapping TypeName="eticaretModel.Üye">
+        <MappingFragment StoreEntitySet="Üye">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="ad" ColumnName="ad" />
+          <ScalarProperty Name="soyad" ColumnName="soyad" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="şifre" ColumnName="şifre" />
+          <ScalarProperty Name="kayıt_tarihi" ColumnName="kayıt_tarihi" />
+          <ScalarProperty Name="güncelleme_tarihi" ColumnName="güncelleme_tarihi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Yorum">
+      <EntityTypeMapping TypeName="eticaretModel.Yorum">
+        <MappingFragment StoreEntitySet="Yorum">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="ürün_id" ColumnName="ürün_id" />
+          <ScalarProperty Name="üye_id" ColumnName="üye_id" />
+          <ScalarProperty Name="metin" ColumnName="metin" />
+          <ScalarProperty Name="ekleme_tarihi" ColumnName="ekleme_tarihi" />
+          <ScalarProperty Name="güncelleme_tarihi" ColumnName="güncelleme_tarihi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

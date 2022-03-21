@@ -1,0 +1,723 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="eticaretModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Adres">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="başlık" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="açıklama" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="ekleme_tarihi" Type="datetime" Nullable="false" />
+          <Property Name="güncelleme_tarihi" Type="nvarchar" MaxLength="10" />
+          <Property Name="üye_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="kullanıcı">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ad" Type="nvarchar" MaxLength="20" />
+          <Property Name="soyad" Type="nvarchar" MaxLength="20" />
+          <Property Name="email" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="şifre" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Mesaj">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="konu" Type="nvarchar" MaxLength="20" />
+          <Property Name="metin" Type="nchar" MaxLength="300" Nullable="false" />
+          <Property Name="okundu" Type="bit" Nullable="false" />
+          <Property Name="gönderme_tarihi" Type="datetime" Nullable="false" />
+          <Property Name="gönderen_id" Type="int" />
+          <Property Name="alıcı_id" Type="int" />
+          <Property Name="parent_mesaj_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Sipariş">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="no" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="tarih" Type="date" Nullable="false" />
+          <Property Name="durum" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="üye_id" Type="int" Nullable="false" />
+          <Property Name="adres_id" Type="int" Nullable="false" />
+          <Property Name="alma_tarihi" Type="datetime" Nullable="false" />
+          <Property Name="güncelleme_tarihi" Type="datetime" />
+          <Property Name="açıklama" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Sipariş_Detay">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ürün_id" Type="int" Nullable="false" />
+          <Property Name="adet" Type="int" Nullable="false" />
+          <Property Name="fiyat" Type="decimal" Precision="7" Scale="2" Nullable="false" />
+          <Property Name="sipariş_id" Type="int" Nullable="false" />
+          <Property Name="alma_tarihi" Type="datetime" Nullable="false" />
+          <Property Name="güncelleme_tarihi" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Ürün">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ad" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="açıklama" Type="nvarchar" MaxLength="1000" />
+          <Property Name="fiyat" Type="decimal" Precision="7" Scale="2" Nullable="false" />
+          <Property Name="resim" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="puanlayan_üye_sayısı" Type="int" Nullable="false" />
+          <Property Name="stokta_var" Type="bit" Nullable="false" />
+          <Property Name="stok_sayısı" Type="int" Nullable="false" />
+          <Property Name="ekleme_tarihi" Type="datetime" Nullable="false" />
+          <Property Name="güncelleme_tarihi" Type="datetime" />
+          <Property Name="puan" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Üye">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ad" Type="nvarchar" MaxLength="30" />
+          <Property Name="soyad" Type="nvarchar" MaxLength="20" />
+          <Property Name="email" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="şifre" Type="nvarchar" MaxLength="70" Nullable="false" />
+          <Property Name="kayıt_tarihi" Type="datetime" Nullable="false" />
+          <Property Name="güncelleme_tarihi" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Yorum">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ürün_id" Type="int" Nullable="false" />
+          <Property Name="üye_id" Type="int" Nullable="false" />
+          <Property Name="metin" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="ekleme_tarihi" Type="datetime" Nullable="false" />
+          <Property Name="güncelleme_tarihi" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_Adres_Üye">
+          <End Role="Üye" Type="Self.Üye" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Adres" Type="Self.Adres" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Üye">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Adres">
+              <PropertyRef Name="üye_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mesaj_Mesaj">
+          <End Role="Mesaj" Type="Self.Mesaj" Multiplicity="0..1" />
+          <End Role="Mesaj1" Type="Self.Mesaj" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mesaj">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Mesaj1">
+              <PropertyRef Name="parent_mesaj_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mesaj_Üye">
+          <End Role="Üye" Type="Self.Üye" Multiplicity="0..1" />
+          <End Role="Mesaj" Type="Self.Mesaj" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Üye">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Mesaj">
+              <PropertyRef Name="gönderen_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mesaj_Üye1">
+          <End Role="Üye" Type="Self.Üye" Multiplicity="0..1" />
+          <End Role="Mesaj" Type="Self.Mesaj" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Üye">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Mesaj">
+              <PropertyRef Name="alıcı_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sipariş_Adres">
+          <End Role="Adres" Type="Self.Adres" Multiplicity="1" />
+          <End Role="Sipariş" Type="Self.Sipariş" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adres">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Sipariş">
+              <PropertyRef Name="adres_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sipariş_Detay_Sipariş">
+          <End Role="Sipariş" Type="Self.Sipariş" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Sipariş_Detay" Type="Self.Sipariş_Detay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sipariş">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Sipariş_Detay">
+              <PropertyRef Name="sipariş_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sipariş_Detay_Ürün">
+          <End Role="Ürün" Type="Self.Ürün" Multiplicity="1" />
+          <End Role="Sipariş_Detay" Type="Self.Sipariş_Detay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ürün">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Sipariş_Detay">
+              <PropertyRef Name="ürün_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sipariş_Üye">
+          <End Role="Üye" Type="Self.Üye" Multiplicity="1" />
+          <End Role="Sipariş" Type="Self.Sipariş" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Üye">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Sipariş">
+              <PropertyRef Name="üye_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Yorum_Ürün">
+          <End Role="Ürün" Type="Self.Ürün" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Yorum" Type="Self.Yorum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ürün">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Yorum">
+              <PropertyRef Name="ürün_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Yorum_Üye">
+          <End Role="Üye" Type="Self.Üye" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Yorum" Type="Self.Yorum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Üye">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Yorum">
+              <PropertyRef Name="üye_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="eticaretModelStoreContainer">
+          <EntitySet Name="Adres" EntityType="Self.Adres" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="kullanıcı" EntityType="Self.kullanıcı" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mesaj" EntityType="Self.Mesaj" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sipariş" EntityType="Self.Sipariş" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sipariş_Detay" EntityType="Self.Sipariş_Detay" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ürün" EntityType="Self.Ürün" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Üye" EntityType="Self.Üye" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Yorum" EntityType="Self.Yorum" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Adres_Üye" Association="Self.FK_Adres_Üye">
+            <End Role="Üye" EntitySet="Üye" />
+            <End Role="Adres" EntitySet="Adres" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mesaj_Mesaj" Association="Self.FK_Mesaj_Mesaj">
+            <End Role="Mesaj" EntitySet="Mesaj" />
+            <End Role="Mesaj1" EntitySet="Mesaj" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mesaj_Üye" Association="Self.FK_Mesaj_Üye">
+            <End Role="Üye" EntitySet="Üye" />
+            <End Role="Mesaj" EntitySet="Mesaj" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mesaj_Üye1" Association="Self.FK_Mesaj_Üye1">
+            <End Role="Üye" EntitySet="Üye" />
+            <End Role="Mesaj" EntitySet="Mesaj" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sipariş_Adres" Association="Self.FK_Sipariş_Adres">
+            <End Role="Adres" EntitySet="Adres" />
+            <End Role="Sipariş" EntitySet="Sipariş" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sipariş_Detay_Sipariş" Association="Self.FK_Sipariş_Detay_Sipariş">
+            <End Role="Sipariş" EntitySet="Sipariş" />
+            <End Role="Sipariş_Detay" EntitySet="Sipariş_Detay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sipariş_Detay_Ürün" Association="Self.FK_Sipariş_Detay_Ürün">
+            <End Role="Ürün" EntitySet="Ürün" />
+            <End Role="Sipariş_Detay" EntitySet="Sipariş_Detay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sipariş_Üye" Association="Self.FK_Sipariş_Üye">
+            <End Role="Üye" EntitySet="Üye" />
+            <End Role="Sipariş" EntitySet="Sipariş" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Yorum_Ürün" Association="Self.FK_Yorum_Ürün">
+            <End Role="Ürün" EntitySet="Ürün" />
+            <End Role="Yorum" EntitySet="Yorum" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Yorum_Üye" Association="Self.FK_Yorum_Üye">
+            <End Role="Üye" EntitySet="Üye" />
+            <End Role="Yorum" EntitySet="Yorum" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="eticaretModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Adres">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="başlık" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="açıklama" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ekleme_tarihi" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="güncelleme_tarihi" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="üye_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Üye" Relationship="Self.FK_Adres_Üye" FromRole="Adres" ToRole="Üye" />
+          <NavigationProperty Name="Sipariş" Relationship="Self.FK_Sipariş_Adres" FromRole="Adres" ToRole="Sipariş" />
+        </EntityType>
+        <EntityType Name="kullanıcı">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ad" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="soyad" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="şifre" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Mesaj">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="konu" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="metin" Type="String" MaxLength="300" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="okundu" Type="Boolean" Nullable="false" />
+          <Property Name="gönderme_tarihi" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="gönderen_id" Type="Int32" />
+          <Property Name="alıcı_id" Type="Int32" />
+          <Property Name="parent_mesaj_id" Type="Int32" />
+          <NavigationProperty Name="Mesaj1" Relationship="Self.FK_Mesaj_Mesaj" FromRole="Mesaj" ToRole="Mesaj1" />
+          <NavigationProperty Name="Mesaj2" Relationship="Self.FK_Mesaj_Mesaj" FromRole="Mesaj1" ToRole="Mesaj" />
+          <NavigationProperty Name="Üye" Relationship="Self.FK_Mesaj_Üye" FromRole="Mesaj" ToRole="Üye" />
+          <NavigationProperty Name="Üye1" Relationship="Self.FK_Mesaj_Üye1" FromRole="Mesaj" ToRole="Üye" />
+        </EntityType>
+        <EntityType Name="Sipariş">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="no" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="tarih" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="durum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="üye_id" Type="Int32" Nullable="false" />
+          <Property Name="adres_id" Type="Int32" Nullable="false" />
+          <Property Name="alma_tarihi" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="güncelleme_tarihi" Type="DateTime" Precision="3" />
+          <Property Name="açıklama" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Adres" Relationship="Self.FK_Sipariş_Adres" FromRole="Sipariş" ToRole="Adres" />
+          <NavigationProperty Name="Sipariş_Detay" Relationship="Self.FK_Sipariş_Detay_Sipariş" FromRole="Sipariş" ToRole="Sipariş_Detay" />
+          <NavigationProperty Name="Üye" Relationship="Self.FK_Sipariş_Üye" FromRole="Sipariş" ToRole="Üye" />
+        </EntityType>
+        <EntityType Name="Sipariş_Detay">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ürün_id" Type="Int32" Nullable="false" />
+          <Property Name="adet" Type="Int32" Nullable="false" />
+          <Property Name="fiyat" Type="Decimal" Precision="7" Scale="2" Nullable="false" />
+          <Property Name="sipariş_id" Type="Int32" Nullable="false" />
+          <Property Name="alma_tarihi" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="güncelleme_tarihi" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Sipariş" Relationship="Self.FK_Sipariş_Detay_Sipariş" FromRole="Sipariş_Detay" ToRole="Sipariş" />
+          <NavigationProperty Name="Ürün" Relationship="Self.FK_Sipariş_Detay_Ürün" FromRole="Sipariş_Detay" ToRole="Ürün" />
+        </EntityType>
+        <EntityType Name="Ürün">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ad" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="açıklama" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="fiyat" Type="Decimal" Precision="7" Scale="2" Nullable="false" />
+          <Property Name="resim" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="puanlayan_üye_sayısı" Type="Int32" Nullable="false" />
+          <Property Name="stokta_var" Type="Boolean" Nullable="false" />
+          <Property Name="stok_sayısı" Type="Int32" Nullable="false" />
+          <Property Name="ekleme_tarihi" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="güncelleme_tarihi" Type="DateTime" Precision="3" />
+          <Property Name="puan" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Sipariş_Detay" Relationship="Self.FK_Sipariş_Detay_Ürün" FromRole="Ürün" ToRole="Sipariş_Detay" />
+          <NavigationProperty Name="Yorum" Relationship="Self.FK_Yorum_Ürün" FromRole="Ürün" ToRole="Yorum" />
+        </EntityType>
+        <EntityType Name="Üye">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ad" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="soyad" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="şifre" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="kayıt_tarihi" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="güncelleme_tarihi" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Adres" Relationship="Self.FK_Adres_Üye" FromRole="Üye" ToRole="Adres" />
+          <NavigationProperty Name="Mesaj" Relationship="Self.FK_Mesaj_Üye" FromRole="Üye" ToRole="Mesaj" />
+          <NavigationProperty Name="Mesaj1" Relationship="Self.FK_Mesaj_Üye1" FromRole="Üye" ToRole="Mesaj" />
+          <NavigationProperty Name="Sipariş" Relationship="Self.FK_Sipariş_Üye" FromRole="Üye" ToRole="Sipariş" />
+          <NavigationProperty Name="Yorum" Relationship="Self.FK_Yorum_Üye" FromRole="Üye" ToRole="Yorum" />
+        </EntityType>
+        <EntityType Name="Yorum">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ürün_id" Type="Int32" Nullable="false" />
+          <Property Name="üye_id" Type="Int32" Nullable="false" />
+          <Property Name="metin" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ekleme_tarihi" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="güncelleme_tarihi" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Ürün" Relationship="Self.FK_Yorum_Ürün" FromRole="Yorum" ToRole="Ürün" />
+          <NavigationProperty Name="Üye" Relationship="Self.FK_Yorum_Üye" FromRole="Yorum" ToRole="Üye" />
+        </EntityType>
+        <Association Name="FK_Adres_Üye">
+          <End Role="Üye" Type="Self.Üye" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Adres" Type="Self.Adres" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Üye">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Adres">
+              <PropertyRef Name="üye_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sipariş_Adres">
+          <End Role="Adres" Type="Self.Adres" Multiplicity="1" />
+          <End Role="Sipariş" Type="Self.Sipariş" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adres">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Sipariş">
+              <PropertyRef Name="adres_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mesaj_Mesaj">
+          <End Role="Mesaj" Type="Self.Mesaj" Multiplicity="0..1" />
+          <End Role="Mesaj1" Type="Self.Mesaj" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mesaj">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Mesaj1">
+              <PropertyRef Name="parent_mesaj_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mesaj_Üye">
+          <End Role="Üye" Type="Self.Üye" Multiplicity="0..1" />
+          <End Role="Mesaj" Type="Self.Mesaj" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Üye">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Mesaj">
+              <PropertyRef Name="gönderen_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mesaj_Üye1">
+          <End Role="Üye" Type="Self.Üye" Multiplicity="0..1" />
+          <End Role="Mesaj" Type="Self.Mesaj" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Üye">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Mesaj">
+              <PropertyRef Name="alıcı_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sipariş_Detay_Sipariş">
+          <End Role="Sipariş" Type="Self.Sipariş" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Sipariş_Detay" Type="Self.Sipariş_Detay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sipariş">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Sipariş_Detay">
+              <PropertyRef Name="sipariş_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sipariş_Üye">
+          <End Role="Üye" Type="Self.Üye" Multiplicity="1" />
+          <End Role="Sipariş" Type="Self.Sipariş" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Üye">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Sipariş">
+              <PropertyRef Name="üye_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sipariş_Detay_Ürün">
+          <End Role="Ürün" Type="Self.Ürün" Multiplicity="1" />
+          <End Role="Sipariş_Detay" Type="Self.Sipariş_Detay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ürün">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Sipariş_Detay">
+              <PropertyRef Name="ürün_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Yorum_Ürün">
+          <End Role="Ürün" Type="Self.Ürün" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Yorum" Type="Self.Yorum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ürün">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Yorum">
+              <PropertyRef Name="ürün_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Yorum_Üye">
+          <End Role="Üye" Type="Self.Üye" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Yorum" Type="Self.Yorum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Üye">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Yorum">
+              <PropertyRef Name="üye_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="eticaretEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Adres" EntityType="Self.Adres" />
+          <EntitySet Name="kullanıcı" EntityType="Self.kullanıcı" />
+          <EntitySet Name="Mesaj" EntityType="Self.Mesaj" />
+          <EntitySet Name="Sipariş" EntityType="Self.Sipariş" />
+          <EntitySet Name="Sipariş_Detay" EntityType="Self.Sipariş_Detay" />
+          <EntitySet Name="Ürün" EntityType="Self.Ürün" />
+          <EntitySet Name="Üye" EntityType="Self.Üye" />
+          <EntitySet Name="Yorum" EntityType="Self.Yorum" />
+          <AssociationSet Name="FK_Adres_Üye" Association="Self.FK_Adres_Üye">
+            <End Role="Üye" EntitySet="Üye" />
+            <End Role="Adres" EntitySet="Adres" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sipariş_Adres" Association="Self.FK_Sipariş_Adres">
+            <End Role="Adres" EntitySet="Adres" />
+            <End Role="Sipariş" EntitySet="Sipariş" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mesaj_Mesaj" Association="Self.FK_Mesaj_Mesaj">
+            <End Role="Mesaj" EntitySet="Mesaj" />
+            <End Role="Mesaj1" EntitySet="Mesaj" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mesaj_Üye" Association="Self.FK_Mesaj_Üye">
+            <End Role="Üye" EntitySet="Üye" />
+            <End Role="Mesaj" EntitySet="Mesaj" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mesaj_Üye1" Association="Self.FK_Mesaj_Üye1">
+            <End Role="Üye" EntitySet="Üye" />
+            <End Role="Mesaj" EntitySet="Mesaj" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sipariş_Detay_Sipariş" Association="Self.FK_Sipariş_Detay_Sipariş">
+            <End Role="Sipariş" EntitySet="Sipariş" />
+            <End Role="Sipariş_Detay" EntitySet="Sipariş_Detay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sipariş_Üye" Association="Self.FK_Sipariş_Üye">
+            <End Role="Üye" EntitySet="Üye" />
+            <End Role="Sipariş" EntitySet="Sipariş" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sipariş_Detay_Ürün" Association="Self.FK_Sipariş_Detay_Ürün">
+            <End Role="Ürün" EntitySet="Ürün" />
+            <End Role="Sipariş_Detay" EntitySet="Sipariş_Detay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Yorum_Ürün" Association="Self.FK_Yorum_Ürün">
+            <End Role="Ürün" EntitySet="Ürün" />
+            <End Role="Yorum" EntitySet="Yorum" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Yorum_Üye" Association="Self.FK_Yorum_Üye">
+            <End Role="Üye" EntitySet="Üye" />
+            <End Role="Yorum" EntitySet="Yorum" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="eticaretModelStoreContainer" CdmEntityContainer="eticaretEntities1">
+          <EntitySetMapping Name="Adres">
+            <EntityTypeMapping TypeName="eticaretModel.Adres">
+              <MappingFragment StoreEntitySet="Adres">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="başlık" ColumnName="başlık" />
+                <ScalarProperty Name="açıklama" ColumnName="açıklama" />
+                <ScalarProperty Name="ekleme_tarihi" ColumnName="ekleme_tarihi" />
+                <ScalarProperty Name="güncelleme_tarihi" ColumnName="güncelleme_tarihi" />
+                <ScalarProperty Name="üye_id" ColumnName="üye_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="kullanıcı">
+            <EntityTypeMapping TypeName="eticaretModel.kullanıcı">
+              <MappingFragment StoreEntitySet="kullanıcı">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ad" ColumnName="ad" />
+                <ScalarProperty Name="soyad" ColumnName="soyad" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="şifre" ColumnName="şifre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mesaj">
+            <EntityTypeMapping TypeName="eticaretModel.Mesaj">
+              <MappingFragment StoreEntitySet="Mesaj">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="konu" ColumnName="konu" />
+                <ScalarProperty Name="metin" ColumnName="metin" />
+                <ScalarProperty Name="okundu" ColumnName="okundu" />
+                <ScalarProperty Name="gönderme_tarihi" ColumnName="gönderme_tarihi" />
+                <ScalarProperty Name="gönderen_id" ColumnName="gönderen_id" />
+                <ScalarProperty Name="alıcı_id" ColumnName="alıcı_id" />
+                <ScalarProperty Name="parent_mesaj_id" ColumnName="parent_mesaj_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sipariş">
+            <EntityTypeMapping TypeName="eticaretModel.Sipariş">
+              <MappingFragment StoreEntitySet="Sipariş">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="no" ColumnName="no" />
+                <ScalarProperty Name="tarih" ColumnName="tarih" />
+                <ScalarProperty Name="durum" ColumnName="durum" />
+                <ScalarProperty Name="üye_id" ColumnName="üye_id" />
+                <ScalarProperty Name="adres_id" ColumnName="adres_id" />
+                <ScalarProperty Name="alma_tarihi" ColumnName="alma_tarihi" />
+                <ScalarProperty Name="güncelleme_tarihi" ColumnName="güncelleme_tarihi" />
+                <ScalarProperty Name="açıklama" ColumnName="açıklama" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sipariş_Detay">
+            <EntityTypeMapping TypeName="eticaretModel.Sipariş_Detay">
+              <MappingFragment StoreEntitySet="Sipariş_Detay">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ürün_id" ColumnName="ürün_id" />
+                <ScalarProperty Name="adet" ColumnName="adet" />
+                <ScalarProperty Name="fiyat" ColumnName="fiyat" />
+                <ScalarProperty Name="sipariş_id" ColumnName="sipariş_id" />
+                <ScalarProperty Name="alma_tarihi" ColumnName="alma_tarihi" />
+                <ScalarProperty Name="güncelleme_tarihi" ColumnName="güncelleme_tarihi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ürün">
+            <EntityTypeMapping TypeName="eticaretModel.Ürün">
+              <MappingFragment StoreEntitySet="Ürün">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ad" ColumnName="ad" />
+                <ScalarProperty Name="açıklama" ColumnName="açıklama" />
+                <ScalarProperty Name="fiyat" ColumnName="fiyat" />
+                <ScalarProperty Name="resim" ColumnName="resim" />
+                <ScalarProperty Name="puanlayan_üye_sayısı" ColumnName="puanlayan_üye_sayısı" />
+                <ScalarProperty Name="stokta_var" ColumnName="stokta_var" />
+                <ScalarProperty Name="stok_sayısı" ColumnName="stok_sayısı" />
+                <ScalarProperty Name="ekleme_tarihi" ColumnName="ekleme_tarihi" />
+                <ScalarProperty Name="güncelleme_tarihi" ColumnName="güncelleme_tarihi" />
+                <ScalarProperty Name="puan" ColumnName="puan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Üye">
+            <EntityTypeMapping TypeName="eticaretModel.Üye">
+              <MappingFragment StoreEntitySet="Üye">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ad" ColumnName="ad" />
+                <ScalarProperty Name="soyad" ColumnName="soyad" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="şifre" ColumnName="şifre" />
+                <ScalarProperty Name="kayıt_tarihi" ColumnName="kayıt_tarihi" />
+                <ScalarProperty Name="güncelleme_tarihi" ColumnName="güncelleme_tarihi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Yorum">
+            <EntityTypeMapping TypeName="eticaretModel.Yorum">
+              <MappingFragment StoreEntitySet="Yorum">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ürün_id" ColumnName="ürün_id" />
+                <ScalarProperty Name="üye_id" ColumnName="üye_id" />
+                <ScalarProperty Name="metin" ColumnName="metin" />
+                <ScalarProperty Name="ekleme_tarihi" ColumnName="ekleme_tarihi" />
+                <ScalarProperty Name="güncelleme_tarihi" ColumnName="güncelleme_tarihi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
